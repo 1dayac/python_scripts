@@ -11,11 +11,11 @@ import sys
 input_file = sys.argv[1]
 output_file = sys.argv[2]
 
+insert_seq = "N" * 500
 seq = Seq.Seq("", generic_dna)
 for record in SeqIO.parse(input_file, "fasta"):
     seq += record.seq
-    for i in range(1, 501):
-        seq += "N"
+    seq += insert_seq
 
 new_record = SeqRecord.SeqRecord(seq, id = "concatenated_reference")
 with open(output_file, "w") as output_handle:
